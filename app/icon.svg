@@ -1,0 +1,14 @@
+<svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    @media (prefers-color-scheme: light) {
+      .ring { stroke: #1d1d1f; }
+    }
+    @media (prefers-color-scheme: dark) {
+      .ring { stroke: #ffffff; }
+    }
+  </style>
+  <circle cx="12" cy="12" r="2.5" class="ring" stroke-width="1.5" />
+  <circle cx="12" cy="12" r="5.5" class="ring" stroke-width="1.5" opacity="0.8" />
+  <circle cx="12" cy="12" r="8.5" class="ring" stroke-width="1.5" opacity="0.6" />
+  <circle cx="12" cy="12" r="11.25" class="ring" stroke-width="1.5" opacity="0.4" />
+</svg>

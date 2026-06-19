@@ -632,45 +632,10 @@ export default function LandingPage() {
         </section>
 
 
-        <section className="py-24 overflow-x-hidden">
-          <div className="container-constrained">
-            <div className="text-center max-w-2xl mx-auto mb-16 reveal-on-scroll">
-              <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-4 text-primary">Wall of Love.</h2>
-              <p className="text-muted text-base">Join thousands of high-achievers forging their future with the Adaptive Pace Engine.</p>
-            </div>
-            
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {[
-                { name: "Alex Rivers", role: "Indie Hacker", content: "The Adaptive Pace Engine is a game changer. It actually understands that I have a life outside of coding.", rating: 5 },
-                { name: "Sarah Chen", role: "Product Designer", content: "Smart Recovery Sprints helped me finish my portfolio in record time after a week of burnout.", rating: 5 },
-                { name: "Marcus Thorne", role: "Fullstack Dev", content: "I&apos;ve tried every tracker out there. GoalForge is the only one that doesn&apos;t make me feel like a failure.", rating: 5 },
-                { name: "Elena Gomez", role: "Startup Founder", content: "The Global Forge blueprints saved us weeks of planning. The YC Sprint layout is perfection.", rating: 5 },
-                { name: "David Kim", role: "Student", content: "Mathematically recalculated targets are exactly what my ADHD brain needed. Pure execution.", rating: 5 },
-                { name: "Siddharth V.", role: "Data Scientist", content: "The level of precision in the Pace Engine v2.0 is staggering. No more streak-shaming, just data.", rating: 5 }
-              ].map((rev, i) => (
-                <div key={i} className="glass-card p-6 flex flex-col gap-4 reveal-on-scroll hover:slide-focus-inner bg-[var(--bg-surface)]/40 hover:bg-[var(--bg-surface)] transition-colors" style={{ transitionDelay: `${(i % 3) * 150}ms` }}>
-                  <div className="flex gap-1">
-                    {[...Array(rev.rating)].map((_, i) => (
-                      <Star key={i} size={14} className="fill-amber-500 text-amber-500" />
-                    ))}
-                  </div>
-                  <p className="text-[14px] text-primary/90 leading-relaxed font-bold italic">&quot;{rev.content}&quot;</p>
-                  <div className="flex items-center gap-3 pt-2">
-                    <div className="w-8 h-8 rounded-full bg-[var(--bg-surface)] border border-[var(--border)] flex items-center justify-center text-[10px] font-bold text-primary">
-                      {rev.name.split(' ').map(n => n[0]).join('')}
-                    </div>
-                    <div>
-                      <div className="text-[13px] font-bold text-primary">{rev.name}</div>
-                      <div className="text-[11px] font-medium text-faint">{rev.role}</div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
 
       </main>
+
+      <PizzaSupportSection />
 
       <footer className="border-t border-[var(--border)] bg-[var(--bg-surface)] py-16 relative z-10">
         <div className="container-full max-w-7xl mx-auto">

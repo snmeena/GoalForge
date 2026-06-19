@@ -7,7 +7,7 @@ import {
   Zap, TrendingUp, BarChart2, RefreshCw,
   ArrowRight, CheckCircle2,
   Code, Dumbbell,
-  Activity, Star, Users, Copy, Globe, Flame, GitGraph,
+  Activity, Star, Users, Copy, Globe, Flame, GitGraph, Pizza,
   ChevronDown, ChevronUp, Mail, ShieldCheck, Check
 } from "lucide-react";
 import { useScrollReveal, useMagnetic } from "@/lib/hooks";
@@ -283,6 +283,130 @@ function PaceDemo() {
     </div>
   );
 }
+
+const PizzaSupportSection = () => {
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [selectedPizza, setSelectedPizza] = useState<number | null>(null);
+    const [paymentDone, setPaymentDone] = useState(false);
+
+    const pizzaMenu = [
+        { name: "Classic Margherita", price: "$5", desc: "Basic fuel for minor bug fixes.", icon: "🍕" },
+        { name: "Paneer Powerhouse", price: "$12", desc: "Premium energy for complex logic engines.", icon: "🌶️" },
+        { name: "Double Pepperoni", price: "$18", desc: "Sustenance for overnight feature sprints.", icon: "🥓" },
+        { name: "The Forge Master", price: "$25", desc: "Unlocks ultimate developer focus mode.", icon: "🔥" }
+    ];
+
+    const handlePizzaSelect = (index: number) => {
+        setSelectedPizza(index);
+        setPaymentDone(false); // Reset payment status when a new pizza is selected
+    };
+
+    const selectedPizzaDetails = selectedPizza !== null ? pizzaMenu[selectedPizza] : null;
+
+    return (
+        <section className="py-20 md:py-28 relative overflow-hidden text-center">
+            <div className="container-constrained relative z-10 max-w-2xl">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[var(--border)] bg-[var(--bg-surface)] text-[10px] font-bold text-muted uppercase tracking-[0.2em] mb-4 reveal-on-scroll">
+                    <Pizza size={12} /> Support the Forge
+                </div>
+                <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight mb-4 text-primary reveal-on-scroll">
+                    Fuel the Development.
+                </h2>
+                <p className="text-muted text-base mb-12 reveal-on-scroll">
+                    GoalForge is currently maintained by a solo developer. If you&apos;re one of them, help us keep the code clean and the servers running by sponsoring the development with a virtual pizza.
+                </p>
+
+                <div className="space-y-6 reveal-on-scroll">
+                    <div className="flex flex-col sm:flex-row items-center gap-6 sm:gap-8">
+                        <button
+                            onClick={() => {
+                                setIsMenuOpen(!isMenuOpen);
+                                if (isMenuOpen) {
+                                    setSelectedPizza(null);
+                                    setPaymentDone(false);
+                                }
+                            }}
+                            className="gf-btn gf-btn-primary px-8 py-3.5 text-[13px] font-bold uppercase tracking-wide group"
+                        >
+                            {isMenuOpen ? "Close Menu" : "View Pizza Menu"}
+                            <ChevronDown size={16} className={`transition-transform ${isMenuOpen ? "rotate-180" : ""}`} />
+                        </button>
+
+                        {selectedPizzaDetails && (
+                            <div className="flex items-center gap-2">
+                                <span className="text-[13px] text-muted font-medium">Selected:</span>
+                                <span className="text-[15px] font-bold text-primary">{selectedPizzaDetails.name}</span>
+                                <span className="text-[15px] font-bold text-primary">{selectedPizzaDetails.price}</span>
+                            </div>
+                        )}
+                    </div>
+
+                    {isMenuOpen && (
+                        <div className="glass-card p-4 sm:p-6 text-left border border-[var(--border)] bg-[var(--bg-surface)]">
+                            <h3 className="text-lg font-bold text-primary mb-4">Pizza Support Tiers</h3>
+                            <div className="overflow-x-auto">
+                                <table className="min-w-full divide-y divide-[var(--border)]">
+                                    <thead>
+                                        <tr>
+                                            <th className="px-4 py-2 text-left text-[10px] font-bold text-muted uppercase tracking-wider">Pizza</th>
+                                            <th className="px-4 py-2 text-left text-[10px] font-bold text-muted uppercase tracking-wider">Price</th>
+                                            <th className="px-4 py-2 text-left text-[10px] font-bold text-muted uppercase tracking-wider">Impact</th>
+                                            <th className="px-4 py-2"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody className="divide-y divide-[var(--border)]">
+                                        {pizzaMenu.map((pizza, idx) => (
+                                            <tr
+                                                key={idx}
+                                                className={`group/row border-b border-[var(--border)] cursor-pointer transition-colors duration-200
+                                                            ${selectedPizza === idx ? 'bg-primary/10 text-primary' : 'hover:bg-[var(--glass-bg)]'}`}
+                                                onClick={() => handlePizzaSelect(idx)}
+                                            >
+                                                <td className="px-4 py-3 whitespace-nowrap text-[13px] font-bold flex items-center gap-2">
+                                                    <span>{pizza.icon}</span> {pizza.name}
+                                                </td>
+                                                <td className="px-4 py-3 whitespace-nowrap text-[13px] text-primary font-mono font-semibold">
+                                                    {pizza.price}
+                                                </td>
+                                                <td className="px-4 py-3 text-[13px] text-muted max-w-[250px]">{pizza.desc}</td>
+                                                <td className="px-4 py-3 whitespace-nowrap">
+                                                    {selectedPizza === idx && <CheckCircle2 size={16} className="text-primary" />}
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    )}
+
+                    {selectedPizzaDetails && (
+                        <div className="glass-card p-4 sm:p-6 border border-[var(--border)] bg-[var(--bg-surface)] text-left">
+                            <h3 className="text-lg font-bold text-primary mb-4">Confirm Your Order</h3>
+                            <div className="flex items-center justify-between mb-4">
+                                <span className="text-[13px] text-muted font-medium">Your selection:</span>
+                                <span className="text-[15px] font-bold text-primary">{selectedPizzaDetails.name} {selectedPizzaDetails.price}</span>
+                            </div>
+                            <button
+                                onClick={() => setPaymentDone(true)}
+                                disabled={paymentDone}
+                                className="w-full py-4 rounded-xl bg-emerald-600 text-white font-bold text-sm tracking-wide uppercase
+                                           hover:bg-emerald-700 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                            >
+                                {paymentDone ? "Thanks for your support!" : `Sponsor with ${selectedPizzaDetails.price}`}
+                            </button>
+                            {paymentDone && (
+                                <p className="text-[11px] text-green-500 mt-2 text-center">
+                                    Thank you! Your virtual pizza has been delivered.
+                                </p>
+                            )}
+                        </div>
+                    )}
+                </div>
+            </div>
+        </section>
+    );
+};
 
 
 function FeatureCard({ icon: Icon, title, desc, tag }: { icon: React.ElementType, title: string, desc: string, tag?: string }) {

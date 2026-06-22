@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from "react";
-import { Zap, Hash, Repeat, BarChart2, LayoutDashboard } from "lucide-react";
+import { Zap, Hash, Repeat, LayoutDashboard } from "lucide-react";
 import { useDashboardStore } from "@/lib/store/useDashboardStore";
 
 import { Database } from "@/lib/database.types";

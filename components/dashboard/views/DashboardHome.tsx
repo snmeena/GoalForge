@@ -4,7 +4,6 @@ import { Goal, EngineType, RoutineFrequency } from "../types";
 import { SmartTrackingModal } from "../ui/SmartTrackingModal";
 import { useDashboardStore } from "@/lib/store/useDashboardStore";
 import { useGoalMutations } from "@/lib/hooks/useGoalMutations";
-import { createClient } from "@/utils/supabase/client";
 import { calculatePace, PaceInput } from "@/lib/page-engine";
 
 interface TemplatePrefill {

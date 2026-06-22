@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { Goal, ViewState, SettingsTab, EngineType } from '@/components/dashboard/types'
+import { Goal, ViewState, SettingsTab } from '@/components/dashboard/types'
 
 interface UserProfile {
   id: string

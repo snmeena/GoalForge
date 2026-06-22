@@ -8,6 +8,7 @@ import { useState, useLayoutEffect } from "react";
 export const Mounted = ({ children }: { children: React.ReactNode }) => {
   const [hasMounted, setHasMounted] = useState(false);
   useLayoutEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setHasMounted(true);
   }, []);
 

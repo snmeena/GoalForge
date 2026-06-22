@@ -18,7 +18,6 @@ import { ReviewModal } from "@/components/dashboard/modals/ReviewModal";
 
 import { useDashboardStore } from "@/lib/store/useDashboardStore";
 import { useDashboardData } from "@/lib/hooks/useDashboardData";
-import { useGoalMutations } from "@/lib/hooks/useGoalMutations";
 import { QUICK_TEMPLATES, COMMUNITY_CHALLENGES } from "@/components/dashboard/constants";
 
 function DashboardContent() {
@@ -175,7 +174,6 @@ function DashboardContent() {
     const [creationStep, setCreationStep] = useState(0);
     const [selectedEngine, setSelectedEngine] = useState<EngineType>("");
     const [goalTitle, setGoalTitle] = useState("");
-    const [goalDeadline, setGoalDeadline] = useState("");
     const [goalPriority, setGoalPriority] = useState("medium");
     const [volumeTarget, setVolumeTarget] = useState("");
     const [volumeUnit, setVolumeUnit] = useState("");
@@ -271,7 +269,13 @@ function DashboardContent() {
         setEditingGoalId(goal.id);
         setGoalTitle(goal.title);
         setSelectedEngine(goal.type);
-        setGoalDeadline(goal.deadline);
+        if (goal.deadline) {
+            const start = goal.startDate ? new Date(goal.startDate) : new Date();
+            const end = new Date(goal.deadline);
+            const diffTime = end.getTime() - start.getTime();
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            setDeadlineDays(Math.max(1, diffDays));
+        }
         setGoalPriority(goal.priority);
         setVolumeTarget(goal.volumeTarget || "");
         setVolumeUnit(goal.volumeUnit || "");

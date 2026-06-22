@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { 
     ChevronLeft, Zap, CheckCircle2, Activity, Calendar, 
     Target, Shield, Info, ListTodo, MessageSquare, 
-    Navigation, ArrowRight, AlertTriangle, GitGraph, Check 
+    ArrowRight, AlertTriangle, GitGraph, Check 
 } from "lucide-react";
 import { Goal } from "../types";
 import { calculatePace, PaceInput } from "@/lib/page-engine";
@@ -15,11 +15,10 @@ interface SmartTrackingModalProps {
 }
 
 export const SmartTrackingModal = ({ goal, onClose }: SmartTrackingModalProps) => {
-    const supabase = createClient();
     const [logs, setLogs] = useState<{ date: string, progress_added: number, execution_notes?: string }[]>([]);
-    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+        const supabase = createClient();
         const fetchLogs = async () => {
             try {
                 const { data, error } = await supabase
@@ -33,8 +32,6 @@ export const SmartTrackingModal = ({ goal, onClose }: SmartTrackingModalProps) =
                 }
             } catch (err) {
                 console.error("Error fetching logs:", err);
-            } finally {
-                setLoading(false);
             }
         };
 

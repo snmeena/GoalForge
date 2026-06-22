@@ -2,7 +2,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useRef, useEffect } from "react";
 import {
   Zap, TrendingUp, BarChart2, RefreshCw,
   ArrowRight, CheckCircle2,
@@ -309,10 +309,30 @@ function FeatureCard({ icon: Icon, title, desc, tag }: { icon: React.ElementType
 export default function LandingPage() {
   const ctaRef = useMagnetic<HTMLAnchorElement>(0.3);
   useScrollReveal();
+  const backgroundRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    let animationFrameId: number;
+    const handleMouseMove = (e: MouseEvent) => {
+      if (backgroundRef.current) {
+        animationFrameId = requestAnimationFrame(() => {
+          backgroundRef.current?.style.setProperty('--mouse-x', `${e.clientX}px`);
+          backgroundRef.current?.style.setProperty('--mouse-y', `${e.clientY}px`);
+        });
+      }
+    };
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      if (animationFrameId) cancelAnimationFrame(animationFrameId);
+    };
+  }, []);
 
   return (
     <div className="gf-layout-wrapper">
-      <div className="bg-dots-container"><div className="bg-dots" /></div>
+      <div ref={backgroundRef} className="mouse-tracker-container" style={{ '--mouse-x': '50vw', '--mouse-y': '50vh' } as React.CSSProperties}>
+        <div className="base-dots" /><div className="spotlight-dots" />
+      </div>
 
       <nav className="glass-nav">
         <div className="container-full h-16 flex items-center justify-between">

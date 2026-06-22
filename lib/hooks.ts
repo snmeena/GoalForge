@@ -1,5 +1,5 @@
 // lib/hooks.ts
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useRef } from "react";
 
 // ==========================================================================
 // SCROLL REVEAL HOOK (MOBILE OPTIMIZED)

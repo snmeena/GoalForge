@@ -8,7 +8,7 @@ import {
 import Logo from "@/components/Logo";
 import { useDashboardStore } from "@/lib/store/useDashboardStore";
 import { useDashboardData } from "@/lib/hooks/useDashboardData";
-import { ViewState, SettingsTab } from "../types";
+import { SettingsTab } from "../types";
 import { useDashboardNavigation } from "@/lib/hooks/useDashboardNavigation";
 
 interface SidebarProps {
@@ -21,7 +21,6 @@ export const Sidebar = ({ resetEngine }: SidebarProps) => {
         activeSettingsTab, 
         setActiveSettingsTab,
         isMobileMenuOpen,
-        setIsMobileMenuOpen,
         storedPreviousView,
         activeGoals,
         checkedInGoals,

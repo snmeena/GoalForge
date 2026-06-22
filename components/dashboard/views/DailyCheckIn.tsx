@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { 
     Hash, Repeat, ListTodo, Flame, 
     CheckCircle2, ArrowRight, X, Plus, 
-    MessageSquare, Activity, ShieldCheck, Cpu, 
-    BarChart3, AlertCircle, Trash2, RotateCcw
+    Activity, ShieldCheck, Cpu, 
+    BarChart3, AlertCircle
 } from "lucide-react";
 
 import { Goal, ViewState } from "../types";
